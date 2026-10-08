@@ -55,8 +55,8 @@ function Header() {
 }
 
 // Kolaż w hero: duży zrzut Street Show, mały Przytulanek (dane z projects.ts).
-const heroMain = projects[0];
-const heroSide = projects.find((p) => p.name.startsWith("Przytulanki"));
+const heroMain = projects.find((p) => p.slug === "streetshow")!;
+const heroSide = projects.find((p) => p.slug === "przytulanki");
 
 function Hero() {
     const { t } = useI18n();
@@ -117,8 +117,8 @@ function Services() {
                                     </li>
                                 ))}
                             </ul>
-                            <a href="#projects" className="service-example mono small">
-                                {t.services.example}: {s.example} →
+                            <a href={`#project-${s.exampleSlug}`} className="service-example mono small">
+                                {t.services.example}: {projects.find((p) => p.slug === s.exampleSlug)?.name} →
                             </a>
                         </article>
                     ))}
@@ -142,7 +142,7 @@ function Projects() {
                 <SectionTitle>{t.projects.title}</SectionTitle>
                 <div className="projects">
                     {projects.map((p) => (
-                        <article key={p.name} className="card project">
+                        <article key={p.slug} id={`project-${p.slug}`} className="card project">
                             <a href={p.live} target="_blank" rel="noopener noreferrer" className="project-shot" tabIndex={-1} aria-hidden="true">
                                 <img src={p.image} alt="" loading="lazy" width={960} height={600} />
                             </a>
