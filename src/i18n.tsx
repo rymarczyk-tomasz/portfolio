@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, type ReactNode } from "react";
 
 export type Lang = "pl" | "en";
 
@@ -260,33 +260,20 @@ const dict = {
 
 export type Dict = (typeof dict)["pl"];
 
-type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: Dict };
+// Ścieżka do katalogu głównego strony względem bieżącej wersji (base "./" — strona działa w dowolnym katalogu).
+const rootPath = (lang: Lang) => (lang === "en" ? "../" : "./");
+
+type Ctx = { lang: Lang; t: Dict; root: string };
 const I18nContext = createContext<Ctx | null>(null);
 
-function initialLang(): Lang {
-    try {
-        const saved = localStorage.getItem("lang");
-        if (saved === "pl" || saved === "en") return saved;
-    } catch {
-        /* storage unavailable */
-    }
-    return navigator.language.toLowerCase().startsWith("pl") ? "pl" : "en";
-}
-
-export function I18nProvider({ children }: { children: ReactNode }) {
-    const [lang, setLang] = useState<Lang>(initialLang);
-
+// Język wynika z adresu (/ albo /en/) i jest przekazywany z zewnątrz, nie zapamiętujemy go w przeglądarce.
+export function I18nProvider({ lang, children }: { lang: Lang; children: ReactNode }) {
     useEffect(() => {
         document.documentElement.lang = lang;
         document.title = dict[lang].meta.title;
-        try {
-            localStorage.setItem("lang", lang);
-        } catch {
-            /* storage unavailable */
-        }
     }, [lang]);
 
-    return <I18nContext.Provider value={{ lang, setLang, t: dict[lang] }}>{children}</I18nContext.Provider>;
+    return <I18nContext.Provider value={{ lang, t: dict[lang], root: rootPath(lang) }}>{children}</I18nContext.Provider>;
 }
 
 export function useI18n() {

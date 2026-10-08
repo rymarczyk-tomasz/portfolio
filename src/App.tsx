@@ -5,16 +5,18 @@ import { ContactForm } from "./components/ContactForm";
 import { GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./components/Icons";
 import { EMAIL, GITHUB, LINKEDIN, NAME, PHONE, PHONE_DISPLAY } from "./config";
 
+// Dwie wersje językowe pod osobnymi adresami: / (PL) i /en/ (EN).
 function LangSwitch() {
-    const { lang, setLang } = useI18n();
+    const { lang, root } = useI18n();
+    const href: Record<Lang, string> = { pl: root, en: `${root}en/` };
     return (
-        <div className="lang-switch" role="group" aria-label="Language">
+        <nav className="lang-switch" aria-label="Language">
             {(["pl", "en"] as Lang[]).map((l) => (
-                <button key={l} type="button" aria-pressed={lang === l} onClick={() => setLang(l)}>
+                <a key={l} href={href[l]} hrefLang={l} lang={l} aria-current={lang === l ? "page" : undefined}>
                     {l.toUpperCase()}
-                </button>
+                </a>
             ))}
-        </div>
+        </nav>
     );
 }
 
