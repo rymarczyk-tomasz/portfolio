@@ -1,6 +1,6 @@
 # Portfolio — Tomasz Rymarczyk
 
-React 19 + TypeScript + Vite. Strona jednostronicowa (O mnie, Projekty, Kontakt) z przełącznikiem PL/EN.
+React 19 + TypeScript + Vite. Strona jednostronicowa (Usługi, Realizacje, Współpraca, O mnie, FAQ, Kontakt) z przełącznikiem PL/EN.
 
 ```bash
 npm install
@@ -12,9 +12,10 @@ npm run build     # gotowa strona w folderze dist/
 
 | Plik | Zawartość |
 |---|---|
-| `src/i18n.tsx` | wszystkie teksty PL i EN |
-| `src/data/projects.ts` | projekty (opis PL/EN, tagi, linki) i lista technologii |
-| `src/config.ts` | e-mail, GitHub, LinkedIn |
+| `src/i18n.tsx` | wszystkie teksty PL i EN (usługi, kroki współpracy, FAQ, pola formularza) |
+| `src/data/projects.ts` | realizacje (dla kogo / zadanie / co zrobiłem, PL/EN, tagi, linki) i lista technologii |
+| `src/config.ts` | e-mail, telefon, miasto, GitHub, LinkedIn |
+| `scripts/og-image.mjs` | grafika podglądu linku; po zmianie: `node scripts/og-image.mjs` |
 | `src/assets/projects/` | zrzuty ekranu projektów (WebP, 960 px) |
 | `src/index.css` | wygląd, kolory w `:root` |
 
@@ -26,6 +27,13 @@ npm run build     # gotowa strona w folderze dist/
 
 Bez klucza przycisk „Wyślij” otwiera program pocztowy odwiedzającego z gotową wiadomością.
 Formularz ma ukryte pole-pułapkę na boty (`botcheck`).
+
+## SEO i domena
+
+Ustaw w `.env` adres strony, np. `SITE_URL=https://twojadomena.pl`, i zbuduj ponownie. Build doda wtedy
+`canonical`, pełny adres `og:image` (bez niego Facebook i Messenger nie pokażą obrazka) oraz wygeneruje
+`sitemap.xml`. `robots.txt` i dane strukturalne (schema.org `ProfessionalService` z telefonem i Elblągiem)
+powstają zawsze. Po wdrożeniu zgłoś sitemapę w Google Search Console.
 
 ## Wdrożenie
 

@@ -19,7 +19,8 @@ export function ContactForm() {
 
         // Bez klucza otwieramy klienta poczty z wypełnioną wiadomością.
         if (!ACCESS_KEY) {
-            const body = `${data.message}\n\n— ${data.name} <${data.email}>`;
+            const phone = data.phone ? `, tel. ${data.phone}` : "";
+            const body = `[${data.type}]\n\n${data.message}\n\n— ${data.name} <${data.email}>${phone}`;
             window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(t.contact.subject)}&body=${encodeURIComponent(body)}`;
             return;
         }
@@ -32,7 +33,7 @@ export function ContactForm() {
                 body: JSON.stringify({
                     ...data,
                     access_key: ACCESS_KEY,
-                    subject: `${t.contact.subject}: ${data.name}`,
+                    subject: `${t.contact.subject}: ${data.name} (${data.type})`,
                     from_name: "Portfolio",
                 }),
             });
@@ -54,6 +55,20 @@ export function ContactForm() {
             <div className="field">
                 <label htmlFor="email">{t.contact.email}</label>
                 <input id="email" name="email" type="email" required autoComplete="email" />
+            </div>
+            <div className="field-row">
+                <div className="field">
+                    <label htmlFor="type">{t.contact.type}</label>
+                    <select id="type" name="type" required>
+                        {t.contact.types.map((type) => (
+                            <option key={type}>{type}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="field">
+                    <label htmlFor="phone">{t.contact.phone}</label>
+                    <input id="phone" name="phone" type="tel" autoComplete="tel" />
+                </div>
             </div>
             <div className="field">
                 <label htmlFor="message">{t.contact.message}</label>
