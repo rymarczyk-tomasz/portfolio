@@ -50,11 +50,15 @@ const dict = {
         },
         projects: {
             title: "Realizacje",
-            client: "Dla kogo",
-            task: "Zadanie",
-            solution: "Co zrobiłem",
-            live: "Zobacz stronę",
-            code: "Kod",
+            count: (n: number) => {
+                const mod10 = n % 10;
+                const mod100 = n % 100;
+                const word = n === 1 ? "projekt" : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? "projekty" : "projektów";
+                return `${n} ${word}`;
+            },
+            live: "Zobacz stronę ↗",
+            demo: "Zobacz demo ↗",
+            noImage: "Zrzut wkrótce",
         },
         process: {
             title: "Jak wygląda współpraca",
@@ -176,11 +180,10 @@ const dict = {
         },
         projects: {
             title: "Selected work",
-            client: "Client",
-            task: "The brief",
-            solution: "What I built",
-            live: "Live site",
-            code: "Code",
+            count: (n: number) => `${n} ${n === 1 ? "project" : "projects"}`,
+            live: "Live site ↗",
+            demo: "View demo ↗",
+            noImage: "Screenshot coming soon",
         },
         process: {
             title: "How we work together",

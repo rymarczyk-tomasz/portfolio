@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useI18n, type Lang } from "./i18n";
-import { projects, stack } from "./data/projects";
+import { projects, stack, type Project } from "./data/projects";
 import { ContactForm } from "./components/ContactForm";
-import { CheckIcon, ExternalIcon, GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./components/Icons";
+import { CheckIcon, GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./components/Icons";
 import { EMAIL, GITHUB, LINKEDIN, NAME, PHONE, PHONE_DISPLAY } from "./config";
 
 function LangSwitch() {
@@ -134,42 +134,65 @@ function Services() {
     );
 }
 
+// Zrzut realizacji jako link do strony; dla czytników ekranu wystarcza link w treści karty.
+function ProjectShot({ project }: { project: Project }) {
+    const { t } = useI18n();
+    return (
+        <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-shot" tabIndex={-1} aria-hidden="true">
+            {project.image ? (
+                <img src={project.image} alt="" loading="lazy" width={960} height={600} />
+            ) : (
+                <span className="project-shot-placeholder mono">{t.projects.noImage}</span>
+            )}
+        </a>
+    );
+}
+
 function Projects() {
     const { t, lang } = useI18n();
+    const featured = projects.filter((p) => p.featured);
+    const rest = projects.filter((p) => !p.featured);
     return (
         <section id="projects" className="section">
             <div className="container">
-                <SectionTitle>{t.projects.title}</SectionTitle>
-                <div className="projects">
-                    {projects.map((p) => (
-                        <article key={p.slug} id={`project-${p.slug}`} className="card project">
-                            <a href={p.live} target="_blank" rel="noopener noreferrer" className="project-shot" tabIndex={-1} aria-hidden="true">
-                                <img src={p.image} alt="" loading="lazy" width={960} height={600} />
-                            </a>
-                            <div className="project-body">
+                <div className="projects-head">
+                    <SectionTitle>{t.projects.title}</SectionTitle>
+                    <p className="projects-count">{t.projects.count(projects.length)}</p>
+                </div>
+                <div className="featured-list">
+                    {featured.map((p) => (
+                        <article key={p.slug} id={`project-${p.slug}`} className="featured">
+                            <ProjectShot project={p} />
+                            <div className="featured-body">
+                                <p className="project-category">{p.category[lang]}</p>
                                 <h3>{p.name}</h3>
-                                <dl className="case">
-                                    <dt>{t.projects.client}</dt>
-                                    <dd>{p.client[lang]}</dd>
-                                    <dt>{t.projects.task}</dt>
-                                    <dd>{p.task[lang]}</dd>
-                                    <dt>{t.projects.solution}</dt>
-                                    <dd>{p.solution[lang]}</dd>
-                                </dl>
-                                <ul className="tags small">
-                                    {p.tags.map((tag) => (
-                                        <li key={tag}>{tag}</li>
-                                    ))}
-                                </ul>
-                                <div className="project-links">
-                                    <a href={p.live} target="_blank" rel="noopener noreferrer">
-                                        <ExternalIcon /> {t.projects.live}
-                                    </a>
-                                    <a href={p.repo} target="_blank" rel="noopener noreferrer" className="muted">
-                                        <GitHubIcon size={16} /> {t.projects.code}
-                                    </a>
-                                </div>
+                                <p className="featured-summary">{p.summary[lang]}</p>
+                                {p.highlights && (
+                                    <ul className="featured-highlights">
+                                        {p.highlights.map((h) => (
+                                            <li key={h.pl}>{h[lang]}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                                {p.note && <p className="project-note">{p.note[lang]}</p>}
+                                <a href={p.live} target="_blank" rel="noopener noreferrer" className="project-link">
+                                    {p.linkLabel === "demo" ? t.projects.demo : t.projects.live}
+                                </a>
                             </div>
+                        </article>
+                    ))}
+                </div>
+                <div className="projects-grid">
+                    {rest.map((p) => (
+                        <article key={p.slug} id={`project-${p.slug}`} className="project-card">
+                            <ProjectShot project={p} />
+                            <p className="project-category">{p.category[lang]}</p>
+                            <h3>
+                                <a href={p.live} target="_blank" rel="noopener noreferrer">
+                                    {p.name}
+                                </a>
+                            </h3>
+                            <p className="project-summary">{p.summary[lang]}</p>
                         </article>
                     ))}
                 </div>
