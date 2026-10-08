@@ -218,7 +218,7 @@ h3 {
 }
 .hero-inner {
     display: grid;
-    grid-template-columns: 1fr 1.05fr;
+    grid-template-columns: 1.1fr 1fr;
     gap: 48px;
     align-items: end;
     padding-top: 56px;
@@ -229,12 +229,14 @@ h3 {
 .hero h1 {
     font: 700 clamp(2.3rem, 5vw, 3.75rem) / 1.04 var(--display);
     letter-spacing: -0.035em;
+    text-wrap: balance;
     margin: 0 0 20px;
 }
 .hero-lead {
     font-size: 19px;
     color: var(--text-2);
-    max-width: 34ch;
+    max-width: 36ch;
+    text-wrap: pretty;
     margin: 0 0 32px;
 }
 .status {
@@ -272,7 +274,7 @@ h3 {
 }
 .hero-shots {
     position: relative;
-    height: 420px;
+    height: 400px;
 }
 .hero-shot {
     position: absolute;
@@ -297,7 +299,7 @@ h3 {
 }
 .hero-shot-side {
     left: 0;
-    top: 24px;
+    top: 64px;
     width: 52%;
     aspect-ratio: 16 / 10;
     border-radius: 8px;

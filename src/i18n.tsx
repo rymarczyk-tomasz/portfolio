@@ -9,7 +9,7 @@ const dict = {
         },
         nav: { services: "Usługi", projects: "Realizacje", about: "O mnie", faq: "FAQ", quote: "Wycena" },
         hero: {
-            title: "Strony internetowe i sklepy dla małych firm",
+            title: "Strony internetowe i\u00A0sklepy dla małych firm",
             lead: "Szybkie, czytelne na telefonie i proste w obsłudze. Rozmawiasz bezpośrednio ze mną.",
             available: "Przyjmuję zlecenia · Elbląg i zdalnie",
             ctaContact: "Opisz swój projekt",
