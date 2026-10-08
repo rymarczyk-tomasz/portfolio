@@ -380,61 +380,61 @@ h2.section-title {
 }
 
 /* ---------- services ---------- */
-.services {
+#services {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    padding: 72px 0;
+}
+.services-inner {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
 }
-.service {
-    padding: 26px 26px 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+.services-inner .section-title {
+    margin: 0;
 }
-.service h3 {
-    font-size: 1.35rem;
-    font-weight: 600;
+.service-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr auto;
+    gap: 24px;
+    align-items: baseline;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule);
+    transition: background 0.15s;
+}
+.service-row:last-child {
+    border-bottom: 1px solid var(--rule);
+}
+.service-row:hover {
+    background: rgba(var(--accent-rgb), 0.05);
+}
+.service-row h3 {
+    font: 600 20px var(--display);
 }
 .service-for {
-    margin: 0;
+    font-size: 15px;
     color: var(--text-2);
-    font-size: 0.95rem;
-}
-.checklist {
-    list-style: none;
-    padding: 0;
     margin: 0;
-    display: grid;
-    gap: 8px;
-    font-size: 0.95rem;
 }
-.checklist li {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-}
-.checklist svg {
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 5px;
+.service-points {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 4px 0 0;
 }
 .service-example {
-    margin-top: auto;
-    padding-top: 6px;
+    font: 500 13px var(--mono);
     color: var(--accent);
     text-decoration: none;
 }
 .service-example:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    color: var(--accent-2);
 }
 .services-cta {
-    margin-top: 40px;
+    margin-top: 28px;
     display: flex;
-    flex-wrap: wrap;
+    gap: 24px;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px 32px;
+    flex-wrap: wrap;
 }
 .services-cta p {
     margin: 0;
@@ -827,8 +827,7 @@ h2.section-title {
         aspect-ratio: auto;
     }
     .about-grid,
-    .contact-grid,
-    .services {
+    .contact-grid {
         grid-template-columns: 1fr;
     }
     .header-phone {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useI18n, type Lang } from "./i18n";
 import { projects, stack, type Project } from "./data/projects";
 import { ContactForm } from "./components/ContactForm";
-import { CheckIcon, GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./components/Icons";
+import { GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./components/Icons";
 import { EMAIL, GITHUB, LINKEDIN, NAME, PHONE, PHONE_DISPLAY } from "./config";
 
 function LangSwitch() {
@@ -101,33 +101,34 @@ function Services() {
     const { t } = useI18n();
     return (
         <section id="services" className="section">
-            <div className="container">
+            <div className="container services-inner">
                 <SectionTitle>{t.services.title}</SectionTitle>
-                <div className="services">
-                    {t.services.items.map((s) => (
-                        <article key={s.name} className="card service">
-                            <h3>{s.name}</h3>
-                            <p className="service-for">
-                                <span className="mono small muted">{t.services.forWhom}:</span> {s.forWhom}
-                            </p>
-                            <ul className="checklist">
-                                {s.points.map((point) => (
-                                    <li key={point}>
-                                        <CheckIcon size={16} /> {point}
-                                    </li>
-                                ))}
-                            </ul>
-                            <a href={`#project-${s.exampleSlug}`} className="service-example mono small">
-                                {t.services.example}: {projects.find((p) => p.slug === s.exampleSlug)?.name} →
-                            </a>
-                        </article>
-                    ))}
-                </div>
-                <div className="services-cta">
-                    <p>{t.services.cta}</p>
-                    <a href="#contact" className="btn btn-primary">
-                        {t.services.ctaButton}
-                    </a>
+                <div>
+                    <div className="service-list">
+                        {t.services.items.map((s) => {
+                            const example = projects.find((p) => p.slug === s.exampleSlug);
+                            return (
+                                <article key={s.name} className="service-row">
+                                    <h3>{s.name}</h3>
+                                    <div className="service-desc">
+                                        <p className="service-for">{s.forWhom}</p>
+                                        <p className="service-points">{s.points.join(" · ")}</p>
+                                    </div>
+                                    {example && (
+                                        <a href={`#project-${example.slug}`} className="service-example" aria-label={`${t.services.example}: ${example.name}`}>
+                                            →
+                                        </a>
+                                    )}
+                                </article>
+                            );
+                        })}
+                    </div>
+                    <div className="services-cta">
+                        <p>{t.services.cta}</p>
+                        <a href="#contact" className="btn btn-primary">
+                            {t.services.ctaButton}
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

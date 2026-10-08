@@ -16,8 +16,7 @@ const dict = {
             ctaCall: "Zadzwoń",
         },
         services: {
-            title: "Co mogę dla Ciebie zrobić",
-            forWhom: "Dla kogo",
+            title: "Usługi",
             example: "Przykład",
             items: [
                 {
@@ -146,8 +145,7 @@ const dict = {
             ctaCall: "Call",
         },
         services: {
-            title: "What I can do for you",
-            forWhom: "Who it's for",
+            title: "Services",
             example: "Example",
             items: [
                 {
