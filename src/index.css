@@ -290,7 +290,7 @@ h3 {
     object-position: top;
 }
 .hero-shot-main {
-    right: 0;
+    left: 0;
     bottom: 0;
     width: 88%;
     aspect-ratio: 16 / 10;
@@ -298,9 +298,10 @@ h3 {
     border-radius: 8px 8px 0 0;
 }
 .hero-shot-side {
-    left: 0;
-    top: 64px;
-    width: 52%;
+    /* po prawej, przy dolnej krawędzi: nie zasłania logo ani menu Street Show */
+    right: 0;
+    bottom: 32px;
+    width: 46%;
     aspect-ratio: 16 / 10;
     border-radius: 8px;
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
