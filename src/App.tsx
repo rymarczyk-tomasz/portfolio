@@ -54,31 +54,39 @@ function Header() {
     );
 }
 
+// Kolaż w hero: duży zrzut Street Show, mały Przytulanek (dane z projects.ts).
+const heroMain = projects[0];
+const heroSide = projects.find((p) => p.name.startsWith("Przytulanki"));
+
 function Hero() {
     const { t } = useI18n();
     return (
         <section className="hero band-dark" id="top">
-            <div className="container">
-                <p className="status">
-                    <span className="dot" /> {t.hero.available}
-                </p>
-                <p className="mono muted">{t.hero.kicker}</p>
-                <h1>{t.hero.title}</h1>
-                <p className="hero-role">{t.hero.lead}</p>
-                <ul className="hero-points">
-                    {t.hero.points.map((point) => (
-                        <li key={point}>
-                            <CheckIcon /> {point}
-                        </li>
-                    ))}
-                </ul>
-                <div className="hero-actions">
-                    <a href="#contact" className="btn btn-primary">
-                        {t.hero.ctaContact}
+            <div className="container hero-inner">
+                <div className="hero-copy">
+                    <p className="status">
+                        <span className="dot" /> {t.hero.available}
+                    </p>
+                    <h1>{t.hero.title}</h1>
+                    <p className="hero-lead">{t.hero.lead}</p>
+                    <div className="hero-actions">
+                        <a href="#contact" className="btn btn-primary">
+                            {t.hero.ctaContact}
+                        </a>
+                        <a href={`tel:${PHONE}`} className="btn btn-ghost">
+                            <PhoneIcon size={18} /> {t.hero.ctaCall}: {PHONE_DISPLAY}
+                        </a>
+                    </div>
+                </div>
+                <div className="hero-shots" aria-hidden="true">
+                    <a href={heroMain.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-main" tabIndex={-1}>
+                        <img src={heroMain.image} alt="" width={960} height={600} loading="eager" fetchPriority="high" />
                     </a>
-                    <a href={`tel:${PHONE}`} className="btn btn-ghost">
-                        <PhoneIcon size={18} /> {t.hero.ctaCall}: {PHONE_DISPLAY}
-                    </a>
+                    {heroSide && (
+                        <a href={heroSide.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-side" tabIndex={-1}>
+                            <img src={heroSide.image} alt="" width={960} height={600} loading="lazy" />
+                        </a>
+                    )}
                 </div>
             </div>
         </section>

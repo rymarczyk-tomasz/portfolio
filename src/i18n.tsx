@@ -9,13 +9,11 @@ const dict = {
         },
         nav: { services: "Usługi", projects: "Realizacje", about: "O mnie", faq: "FAQ", quote: "Wycena" },
         hero: {
-            kicker: "Tomasz Rymarczyk · web developer z Elbląga",
             title: "Strony internetowe i sklepy dla małych firm",
-            lead: "Szybkie, czytelne na telefonie i proste w obsłudze. Pomagam firmom z Elbląga i całej Polski, od pierwszej rozmowy aż po stronę działającą w sieci.",
-            available: "Przyjmuję zlecenia",
+            lead: "Szybkie, czytelne na telefonie i proste w obsłudze. Rozmawiasz bezpośrednio ze mną.",
+            available: "Przyjmuję zlecenia · Elbląg i zdalnie",
             ctaContact: "Opisz swój projekt",
             ctaCall: "Zadzwoń",
-            points: ["Wersja na telefon w standardzie", "Podstawowe SEO od startu", "Kontakt bezpośrednio ze mną, bez pośredników"],
         },
         services: {
             title: "Co mogę dla Ciebie zrobić",
@@ -137,13 +135,11 @@ const dict = {
         },
         nav: { services: "Services", projects: "Work", about: "About", faq: "FAQ", quote: "Get a quote" },
         hero: {
-            kicker: "Tomasz Rymarczyk · web developer from Elbląg, Poland",
             title: "Websites and online shops for small businesses",
-            lead: "Fast, easy to read on a phone and simple to run. I help businesses across Poland and beyond, from the first conversation to a site that's live.",
-            available: "Open for freelance work",
+            lead: "Fast, easy to read on a phone and simple to run. You talk directly to me.",
+            available: "Open for work · Elbląg & remote",
             ctaContact: "Tell me about your project",
             ctaCall: "Call",
-            points: ["Mobile-friendly by default", "SEO basics from day one", "You work directly with me, no middlemen"],
         },
         services: {
             title: "What I can do for you",
