@@ -3,10 +3,11 @@
  * i akcent w kolorze patyny. Pasy ciemne nadpisują te same zmienne przez .band-dark.
  */
 :root {
-    --bg: #e2ded6;
-    --bg-2: #d8d3c9;
-    --card: #efece6;
-    --border: #c4beb2;
+    --bg: #f1efea;
+    --bg-2: #e6e3dc;
+    --card: #f8f6f2;
+    --border: #d3cec4;
+    --rule: #c4beb2;
     --line: #22262b;
     --text: #22262b;
     --text-2: #3f454c;
@@ -18,7 +19,7 @@
     --ok: #166534;
     --err: #b91c1c;
     --radius: 6px;
-    --shadow: 4px 4px 0 var(--line);
+    --shadow: none;
     --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
     --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
     --display: "Space Grotesk", var(--sans);
@@ -52,7 +53,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 84px;
 }
 
 body {
@@ -285,23 +286,19 @@ h3 {
     text-decoration: none;
     cursor: pointer;
     border: 1px solid transparent;
-    transition: transform 0.15s, background 0.15s, border-color 0.15s, box-shadow 0.15s;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 .btn-primary {
     background: var(--accent);
     color: var(--on-accent);
-    border-color: var(--line);
-    box-shadow: 3px 3px 0 var(--line);
+    border-color: transparent;
 }
 .btn-primary:hover {
     background: var(--accent-2);
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0 var(--line);
 }
 .btn-primary:disabled {
     opacity: 0.6;
     cursor: wait;
-    transform: none;
 }
 .btn-ghost {
     border-color: var(--border);
@@ -319,30 +316,17 @@ h3 {
 .section + .section {
     border-top: 1px solid var(--border);
 }
-.section-title {
-    font-size: clamp(1.9rem, 4vw, 2.6rem);
-    font-weight: 700;
+h2.section-title {
+    font: 700 clamp(1.9rem, 4vw, 2.5rem) / 1.1 var(--display);
     letter-spacing: -0.02em;
-    margin-bottom: 44px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-.section-index {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 4px;
-    padding: 2px 8px;
+    /* odstęp pod tytułem dla sekcji bez nowej makiety; nowe nagłówki sekcji go zerują */
+    margin: 0 0 44px;
 }
 
 .card {
     background: var(--card);
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
 }
 
 .tags {
@@ -422,9 +406,6 @@ h3 {
     align-items: center;
     justify-content: space-between;
     gap: 16px 32px;
-    padding: 24px 28px;
-    border: 1px dashed var(--line);
-    border-radius: var(--radius);
 }
 .services-cta p {
     margin: 0;
@@ -442,7 +423,7 @@ h3 {
     gap: 28px;
 }
 .step {
-    border-top: 3px solid var(--line);
+    border-top: 3px solid var(--border);
     padding-top: 18px;
 }
 .step-no {
@@ -498,16 +479,11 @@ h3 {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-.project:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--accent);
 }
 .project-shot {
     display: block;
     background: var(--bg-2);
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--border);
 }
 .project-shot img {
     width: 100%;
@@ -576,7 +552,7 @@ h3 {
 }
 .faq-item {
     background: var(--card);
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
 }
 .faq-item summary {
@@ -677,7 +653,7 @@ h3 {
 .field textarea {
     font: inherit;
     color: var(--text);
-    background: #f8f6f2;
+    background: #ffffff;
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 12px 14px;

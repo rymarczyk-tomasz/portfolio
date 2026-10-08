@@ -83,13 +83,8 @@ function Hero() {
     );
 }
 
-function SectionTitle({ index, children }: { index: string; children: string }) {
-    return (
-        <h2 className="section-title">
-            <span className="section-index mono">{index}</span>
-            <span>{children}</span>
-        </h2>
-    );
+function SectionTitle({ children }: { children: string }) {
+    return <h2 className="section-title">{children}</h2>;
 }
 
 function Services() {
@@ -97,7 +92,7 @@ function Services() {
     return (
         <section id="services" className="section">
             <div className="container">
-                <SectionTitle index="01">{t.services.title}</SectionTitle>
+                <SectionTitle>{t.services.title}</SectionTitle>
                 <div className="services">
                     {t.services.items.map((s) => (
                         <article key={s.name} className="card service">
@@ -134,7 +129,7 @@ function Projects() {
     return (
         <section id="projects" className="section">
             <div className="container">
-                <SectionTitle index="02">{t.projects.title}</SectionTitle>
+                <SectionTitle>{t.projects.title}</SectionTitle>
                 <div className="projects">
                     {projects.map((p) => (
                         <article key={p.name} className="card project">
@@ -178,7 +173,7 @@ function Process() {
     return (
         <section id="process" className="section">
             <div className="container">
-                <SectionTitle index="03">{t.process.title}</SectionTitle>
+                <SectionTitle>{t.process.title}</SectionTitle>
                 <ol className="steps">
                     {t.process.steps.map((step, i) => (
                         <li key={step.name} className="step">
@@ -198,7 +193,7 @@ function About() {
     return (
         <section id="about" className="section">
             <div className="container about">
-                <SectionTitle index="04">{t.about.title}</SectionTitle>
+                <SectionTitle>{t.about.title}</SectionTitle>
                 <div className="about-grid">
                     <div className="about-text">
                         <p>{t.about.p1}</p>
@@ -225,7 +220,7 @@ function Faq() {
     return (
         <section id="faq" className="section">
             <div className="container">
-                <SectionTitle index="05">{t.faq.title}</SectionTitle>
+                <SectionTitle>{t.faq.title}</SectionTitle>
                 <div className="faq">
                     {t.faq.items.map((item) => (
                         <details key={item.q} className="faq-item">
@@ -244,7 +239,7 @@ function Contact() {
     return (
         <section id="contact" className="section">
             <div className="container contact">
-                <SectionTitle index="06">{t.contact.title}</SectionTitle>
+                <SectionTitle>{t.contact.title}</SectionTitle>
                 <div className="contact-grid">
                     <div>
                         <p className="lead">{t.contact.lead}</p>
