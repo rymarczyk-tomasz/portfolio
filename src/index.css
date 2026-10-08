@@ -28,8 +28,8 @@
 
 .band-dark {
     --bg: #2b2d2f;
-    --bg-2: #323940;
-    --card: #343b43;
+    --bg-2: #35373a;
+    --card: #38393c;
     --border: #4a4d50;
     --line: #11151a;
     --text: #eef0f1;
@@ -430,7 +430,7 @@ h2.section-title {
     min-height: 44px;
     /* ujemny margines kompensuje powiększone pole kliknięcia */
     margin: -14px -14px -14px 0;
-    font: 500 13px var(--mono);
+    font: 500 18px var(--mono);
     color: var(--accent);
     text-decoration: none;
 }
@@ -821,25 +821,45 @@ h2.section-title {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+@media (min-width: 561px) and (max-width: 1020px) {
+    .project-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto auto auto 1fr;
+        column-gap: 28px;
+    }
+    .project-card:last-child:nth-child(odd) .project-shot {
+        grid-column: 1;
+        grid-row: 1 / -1;
+    }
+    .project-card:last-child:nth-child(odd) > :not(.project-shot) {
+        grid-column: 2;
+    }
+    .project-card:last-child:nth-child(odd) .project-category {
+        grid-row: 2;
+    }
+    .project-card:last-child:nth-child(odd) h3 {
+        grid-row: 3;
+    }
+    .project-card:last-child:nth-child(odd) .project-summary {
+        grid-row: 4;
+    }
+}
 @media (max-width: 860px) {
     .hero-inner {
         grid-template-columns: 1fr;
         gap: 0;
     }
     .hero-copy {
-        padding-bottom: 32px;
+        padding-bottom: 56px;
     }
     .hero-shots {
-        height: 240px;
-    }
-    .hero-shot-side {
+        /* ten sam zrzut Street Show otwiera Realizacje zaraz pod hero */
         display: none;
     }
-    .hero-shot-main {
-        /* przy pełnej szerokości 16:10 byłby wyższy niż pas 240px, więc wypełnia go i pokazuje górę strony */
-        width: 100%;
-        height: 100%;
-        aspect-ratio: auto;
+    .project-shot-placeholder {
+        /* TODO: usunąć razem z placeholderem po podpięciu factoryops.webp */
+        aspect-ratio: 16 / 6;
     }
     .featured,
     .featured:nth-child(even) {
@@ -909,6 +929,15 @@ h2.section-title {
     }
     .featured-body h3 {
         font-size: 24px;
+    }
+    .section,
+    #projects,
+    #services {
+        padding-block: 56px;
+    }
+    h2.section-title,
+    .projects-head {
+        margin-bottom: 28px;
     }
 }
 
