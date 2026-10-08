@@ -63,5 +63,7 @@ export default defineConfig(({ mode }) => {
     return {
         plugins: [react(), seo(env.SITE_URL)],
         base: "./",
+        // Rok w stopce wpisany podczas builda: ten sam w HTML z prerenderingu i po hydratacji.
+        define: { __BUILD_YEAR__: JSON.stringify(new Date().getFullYear()) },
     };
 });

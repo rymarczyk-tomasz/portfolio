@@ -5,6 +5,8 @@ import { ContactForm } from "./components/ContactForm";
 import { GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./components/Icons";
 import { EMAIL, GITHUB, LINKEDIN, NAME, PHONE, PHONE_DISPLAY } from "./config";
 
+declare const __BUILD_YEAR__: number;
+
 // Dwie wersje językowe pod osobnymi adresami: / (PL) i /en/ (EN).
 function LangSwitch() {
     const { lang, root } = useI18n();
@@ -366,7 +368,7 @@ export default function App() {
             </main>
             <footer className="footer band-dark">
                 <div className="container mono small muted">
-                    © {new Date().getFullYear()} · {t.footer}
+                    © {__BUILD_YEAR__} · {t.footer}
                 </div>
             </footer>
             <MobileCta />
