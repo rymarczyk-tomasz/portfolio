@@ -38,6 +38,7 @@ powstają zawsze. Po wdrożeniu zgłoś sitemapę w Google Search Console.
 ## Wdrożenie
 
 Po `npm run build` cała strona to statyczne pliki w `dist/` (ścieżki względne, działa też w podkatalogu).
+`scripts/prerender.mjs` zapisuje gotowy HTML obu wersji: `dist/index.html` (PL) i `dist/en/index.html` (EN).
 
 - **Hostinger:** hPanel → Menedżer plików → `public_html` → wgraj **zawartość** folderu `dist/`.
   Po zakupie domeny podepnij ją w hPanelu i włącz darmowy SSL.

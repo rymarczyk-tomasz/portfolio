@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
-import { useI18n, type Lang } from "./i18n";
+import { I18nProvider, useI18n, type Lang } from "./i18n";
 import { projects, stack, type Project } from "./data/projects";
 import { ContactForm } from "./components/ContactForm";
 import { GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./components/Icons";
 import { EMAIL, GITHUB, LINKEDIN, NAME, PHONE, PHONE_DISPLAY } from "./config";
 
 declare const __BUILD_YEAR__: number;
+
+// Zrzuty po buildzie mają adres „assets/…” (renderBuiltUrl w vite.config.ts), liczony od katalogu głównego strony,
+// więc ten sam na serwerze i w przeglądarce. W dev adres jest bezwzględny i zostaje bez zmian.
+function useAsset() {
+    const { root } = useI18n();
+    return (src: string) => (/^(\/|[a-z]+:)/.test(src) ? src : root + src);
+}
 
 // Dwie wersje językowe pod osobnymi adresami: / (PL) i /en/ (EN).
 function LangSwitch() {
@@ -64,6 +71,7 @@ const heroSide = projects.find((p) => p.slug === "przytulanki");
 
 function Hero() {
     const { t } = useI18n();
+    const asset = useAsset();
     return (
         <section className="hero band-dark" id="top">
             <div className="container hero-inner">
@@ -84,11 +92,11 @@ function Hero() {
                 </div>
                 <div className="hero-shots" aria-hidden="true">
                     <a href={heroMain.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-main" tabIndex={-1}>
-                        <img src={heroMain.image} alt="" width={960} height={600} loading="eager" fetchPriority="high" />
+                        <img src={asset(heroMain.image!)} alt="" width={960} height={600} loading="eager" fetchPriority="high" />
                     </a>
                     {heroSide && (
                         <a href={heroSide.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-side" tabIndex={-1}>
-                            <img src={heroSide.image} alt="" width={960} height={600} loading="lazy" />
+                            <img src={asset(heroSide.image!)} alt="" width={960} height={600} loading="lazy" />
                         </a>
                     )}
                 </div>
@@ -142,10 +150,11 @@ function Services() {
 // Zrzut realizacji jako link do strony; dla czytników ekranu wystarcza link w treści karty.
 function ProjectShot({ project }: { project: Project }) {
     const { t } = useI18n();
+    const asset = useAsset();
     return (
         <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-shot" tabIndex={-1} aria-hidden="true">
             {project.image ? (
-                <img src={project.image} alt="" loading="lazy" width={960} height={600} />
+                <img src={asset(project.image)} alt="" loading="lazy" width={960} height={600} />
             ) : (
                 <span className="project-shot-placeholder mono">{t.projects.noImage}</span>
             )}
@@ -352,7 +361,15 @@ function MobileCta() {
     );
 }
 
-export default function App() {
+export default function App({ lang }: { lang: Lang }) {
+    return (
+        <I18nProvider lang={lang}>
+            <Page />
+        </I18nProvider>
+    );
+}
+
+function Page() {
     const { t } = useI18n();
     return (
         <>
