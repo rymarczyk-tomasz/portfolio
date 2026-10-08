@@ -203,6 +203,7 @@ function About() {
                     <div className="about-text">
                         <p>{t.about.p1}</p>
                         <p>{t.about.p2}</p>
+                        <p>{t.about.ai}</p>
                         <p>{t.about.p3}</p>
                     </div>
                     <div className="card stack">
