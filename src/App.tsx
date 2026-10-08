@@ -37,14 +37,16 @@ function Header() {
                     <span className="logo-name">{NAME}</span>
                 </a>
                 <nav className="nav">
-                    <a href="#services">{t.nav.services}</a>
                     <a href="#projects">{t.nav.projects}</a>
+                    <a href="#services">{t.nav.services}</a>
                     <a href="#about">{t.nav.about}</a>
                     <a href="#faq">{t.nav.faq}</a>
-                    <a href="#contact">{t.nav.contact}</a>
                 </nav>
                 <a href={`tel:${PHONE}`} className="header-phone">
                     <PhoneIcon size={16} /> {PHONE_DISPLAY}
+                </a>
+                <a href="#contact" className="header-quote">
+                    {t.nav.quote}
                 </a>
                 <LangSwitch />
             </div>
@@ -321,8 +323,8 @@ export default function App() {
             <Header />
             <main>
                 <Hero />
-                <Services />
                 <Projects />
+                <Services />
                 <Process />
                 <About />
                 <Faq />

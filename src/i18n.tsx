@@ -7,7 +7,7 @@ const dict = {
         meta: {
             title: "Strony internetowe Elbląg · Tomasz Rymarczyk, web developer",
         },
-        nav: { services: "Usługi", projects: "Realizacje", about: "O mnie", faq: "FAQ", contact: "Kontakt" },
+        nav: { services: "Usługi", projects: "Realizacje", about: "O mnie", faq: "FAQ", quote: "Wycena" },
         hero: {
             kicker: "Tomasz Rymarczyk · web developer z Elbląga",
             title: "Strony internetowe i sklepy dla małych firm",
@@ -135,7 +135,7 @@ const dict = {
         meta: {
             title: "Tomasz Rymarczyk · Web Developer, Elbląg, Poland",
         },
-        nav: { services: "Services", projects: "Work", about: "About", faq: "FAQ", contact: "Contact" },
+        nav: { services: "Services", projects: "Work", about: "About", faq: "FAQ", quote: "Get a quote" },
         hero: {
             kicker: "Tomasz Rymarczyk · web developer from Elbląg, Poland",
             title: "Websites and online shops for small businesses",
