@@ -216,7 +216,7 @@ h3 {
 }
 .hero-inner {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1fr;
     gap: 48px;
     align-items: end;
     padding-top: 56px;
@@ -225,7 +225,7 @@ h3 {
     padding: 0 0 72px;
 }
 .hero h1 {
-    font: 700 clamp(2.3rem, 5vw, 3.75rem) / 1.04 var(--display);
+    font: 700 clamp(2.3rem, 5vw, 3.625rem) / 1.04 var(--display);
     letter-spacing: -0.035em;
     text-wrap: balance;
     margin: 0 0 20px;
@@ -291,7 +291,7 @@ h3 {
     /* pełna szerokość zrzutu, przycięty tylko dół */
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 8 / 7;
     border-bottom: 0;
     border-radius: 8px 8px 0 0;
 }
@@ -692,7 +692,7 @@ h2.section-title {
 /* ---------- contact ---------- */
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1fr;
     gap: 48px;
     align-items: start;
 }
