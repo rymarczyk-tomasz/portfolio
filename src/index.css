@@ -527,8 +527,7 @@ h2.section-title {
     display: block;
     text-decoration: none;
 }
-.project-shot img,
-.project-shot-placeholder {
+.project-shot img {
     width: 100%;
     height: auto;
     aspect-ratio: 16 / 10;
@@ -538,18 +537,8 @@ h2.section-title {
     border-radius: 6px;
     transition: border-color 0.15s;
 }
-.project-shot-placeholder {
-    /* TODO: usunąć, gdy wszystkie realizacje mają zrzuty (brakuje factoryops.webp) */
-    display: grid;
-    place-items: center;
-    background: var(--bg-2);
-    font-size: 13px;
-    color: var(--muted);
-}
 .project-shot:hover img,
-.project-shot:hover .project-shot-placeholder,
-.project-card:hover img,
-.project-card:hover .project-shot-placeholder {
+.project-card:hover img {
     border-color: var(--accent);
 }
 .project-category {
@@ -854,10 +843,6 @@ h2.section-title {
     .hero-shots {
         /* ten sam zrzut Street Show otwiera Realizacje zaraz pod hero */
         display: none;
-    }
-    .project-shot-placeholder {
-        /* TODO: usunąć razem z placeholderem po podpięciu factoryops.webp */
-        aspect-ratio: 16 / 6;
     }
     .featured,
     .featured:nth-child(even) {

@@ -2,6 +2,7 @@ import streetshow from "../assets/projects/streetshow.webp";
 import przytulanki from "../assets/projects/przytulanki.webp";
 import calculator from "../assets/projects/calculator.webp";
 import crouzen from "../assets/projects/crouzen.webp";
+import factoryops from "../assets/projects/factoryops.webp";
 import type { Lang } from "../i18n";
 
 type Text = Record<Lang, string>;
@@ -12,8 +13,7 @@ export type Project = {
     /** kotwica #project-<slug>, linki z Usług */
     slug: ProjectSlug;
     name: string;
-    /** brak zrzutu = placeholder na karcie */
-    image?: string;
+    image: string;
     live: string;
     /** zostaje w danych, nie jest wyświetlany */
     repo?: string;
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     {
         slug: "factoryops",
         name: "FactoryOps",
-        // TODO: dodać zrzut src/assets/projects/factoryops.webp (widok osi czasu, 960px, WebP) i podpiąć jako image
+        image: factoryops,
         live: "https://rymarczyk-tomasz.github.io/FactoryOps/",
         repo: "https://github.com/rymarczyk-tomasz/FactoryOps",
         tags: ["React", "TypeScript", "Vite", "react-bootstrap", ".NET 8", "Docker"],

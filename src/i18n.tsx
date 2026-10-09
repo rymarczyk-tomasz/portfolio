@@ -57,7 +57,6 @@ const dict = {
             },
             live: "Zobacz stronę ↗",
             demo: "Zobacz demo ↗",
-            noImage: "Zrzut wkrótce",
         },
         process: {
             title: "Jak wygląda współpraca",
@@ -181,7 +180,6 @@ const dict = {
             count: (n: number) => `${n} ${n === 1 ? "project" : "projects"}`,
             live: "Live site ↗",
             demo: "View demo ↗",
-            noImage: "Screenshot coming soon",
         },
         process: {
             title: "How we work together",

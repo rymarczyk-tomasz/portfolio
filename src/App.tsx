@@ -92,11 +92,11 @@ function Hero() {
                 </div>
                 <div className="hero-shots" aria-hidden="true">
                     <a href={heroMain.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-main" tabIndex={-1}>
-                        <img src={asset(heroMain.image!)} alt="" width={960} height={600} loading="eager" fetchPriority="high" />
+                        <img src={asset(heroMain.image)} alt="" width={960} height={600} loading="eager" fetchPriority="high" />
                     </a>
                     {heroSide && (
                         <a href={heroSide.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-side" tabIndex={-1}>
-                            <img src={asset(heroSide.image!)} alt="" width={960} height={600} loading="lazy" />
+                            <img src={asset(heroSide.image)} alt="" width={960} height={600} loading="lazy" />
                         </a>
                     )}
                 </div>
@@ -149,15 +149,10 @@ function Services() {
 
 // Zrzut realizacji jako link do strony; dla czytników ekranu wystarcza link w treści karty.
 function ProjectShot({ project }: { project: Project }) {
-    const { t } = useI18n();
     const asset = useAsset();
     return (
         <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-shot" tabIndex={-1} aria-hidden="true">
-            {project.image ? (
-                <img src={asset(project.image)} alt="" loading="lazy" width={960} height={600} />
-            ) : (
-                <span className="project-shot-placeholder mono">{t.projects.noImage}</span>
-            )}
+            <img src={asset(project.image)} alt="" loading="lazy" width={960} height={600} />
         </a>
     );
 }
