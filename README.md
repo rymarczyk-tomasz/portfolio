@@ -16,7 +16,7 @@ npm run build     # gotowa strona w folderze dist/
 | `src/data/projects.ts` | realizacje (dla kogo / zadanie / co zrobiłem, PL/EN, tagi, linki) i lista technologii |
 | `src/config.ts` | e-mail, telefon, miasto, GitHub, LinkedIn |
 | `scripts/og-image.mjs` | grafika podglądu linku; po zmianie: `node scripts/og-image.mjs` |
-| `src/assets/projects/` | zrzuty ekranu projektów (WebP, 960 px) |
+| `src/assets/projects/` | zrzuty ekranu projektów (WebP, 960 px; w hero `streetshow-hero.webp`, 1120×980); po dodaniu lub podmianie zrzutu: `node scripts/shots.mjs` (mniejsze wersje do `srcset`) |
 | `src/index.css` | wygląd, kolory w `:root` |
 
 ## Formularz kontaktowy (Web3Forms)
