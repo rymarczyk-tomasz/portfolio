@@ -2,10 +2,11 @@ import { createContext, useContext, useEffect, type ReactNode } from "react";
 
 export type Lang = "pl" | "en";
 
-const dict = {
+export const dict = {
     pl: {
         meta: {
-            title: "Strony internetowe Elbląg · Tomasz Rymarczyk, web developer",
+            title: "Tomasz Rymarczyk: strony internetowe i sklepy dla małych firm · Elbląg",
+            description: "Strony firmowe, landing page i sklepy internetowe dla małych firm. Szybkie, czytelne na telefonie, proste w obsłudze. Elbląg i zdalnie, tel. 731 050 097.",
         },
         nav: { services: "Usługi", projects: "Realizacje", about: "O mnie", faq: "FAQ", quote: "Wycena" },
         hero: {
@@ -57,6 +58,7 @@ const dict = {
             },
             live: "Zobacz stronę ↗",
             demo: "Zobacz demo ↗",
+            shotView: "widok główny",
         },
         process: {
             title: "Jak wygląda współpraca",
@@ -133,7 +135,8 @@ const dict = {
     },
     en: {
         meta: {
-            title: "Tomasz Rymarczyk · Web Developer, Elbląg, Poland",
+            title: "Tomasz Rymarczyk: websites and online shops for small businesses",
+            description: "Business websites, landing pages and online shops for small businesses. Fast, easy to read on a phone and simple to run. Based in Elbląg, Poland.",
         },
         nav: { services: "Services", projects: "Work", about: "About", faq: "FAQ", quote: "Get a quote" },
         hero: {
@@ -180,6 +183,7 @@ const dict = {
             count: (n: number) => `${n} ${n === 1 ? "project" : "projects"}`,
             live: "Live site ↗",
             demo: "View demo ↗",
+            shotView: "home page",
         },
         process: {
             title: "How we work together",

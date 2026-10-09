@@ -30,10 +30,13 @@ Formularz ma ukryte pole-pułapkę na boty (`botcheck`).
 
 ## SEO i domena
 
-Ustaw w `.env` adres strony, np. `SITE_URL=https://twojadomena.pl`, i zbuduj ponownie. Build doda wtedy
-`canonical`, pełny adres `og:image` (bez niego Facebook i Messenger nie pokażą obrazka) oraz wygeneruje
-`sitemap.xml`. `robots.txt` i dane strukturalne (schema.org `ProfessionalService` z telefonem i Elblągiem)
-powstają zawsze. Po wdrożeniu zgłoś sitemapę w Google Search Console.
+Meta tagi, Open Graph i dane strukturalne (schema.org `ProfessionalService` i `FAQPage`) powstają dla każdego
+języka w `head()` w `src/entry-server.tsx`, a `robots.txt` i `404.html` (z `noindex`) w `scripts/prerender.mjs`.
+
+Po zakupie domeny wpisz jej adres w `src/site.ts` (`SITE_URL = "https://twojadomena.pl"`) i zbuduj ponownie.
+Build doda wtedy `canonical`, `hreflang`, `og:url`, `og:image` (bez pełnego adresu Facebook i Messenger
+nie pokażą obrazka), `url` w JSON-LD, `sitemap.xml`, linię `Sitemap:` w `robots.txt` i `<base href>` w `404.html`.
+Po wdrożeniu zgłoś sitemapę w Google Search Console.
 
 ## Wdrożenie
 

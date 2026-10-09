@@ -70,9 +70,20 @@ function Header() {
 const heroMain = projects.find((p) => p.slug === "streetshow")!;
 const heroSide = projects.find((p) => p.slug === "przytulanki");
 
+// Opis zrzutu dla wyszukiwarki grafik, np. „Street Show: strona wydarzenia + panel organizatora, widok główny”.
+// Linki ze zrzutami są aria-hidden, więc czytniki ekranu go nie powtarzają.
+function useShotAlt() {
+    const { lang, t } = useI18n();
+    return (project: Project) => {
+        const category = project.category[lang];
+        return `${project.name}: ${category[0].toLowerCase()}${category.slice(1)}, ${t.projects.shotView}`;
+    };
+}
+
 function Hero() {
     const { t } = useI18n();
     const asset = useAsset();
+    const shotAlt = useShotAlt();
     return (
         <section className="hero band-dark" id="top">
             <div className="container hero-inner">
@@ -93,11 +104,11 @@ function Hero() {
                 </div>
                 <div className="hero-shots" aria-hidden="true">
                     <a href={heroMain.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-main" tabIndex={-1}>
-                        <img src={asset(streetshowHero)} alt="" width={1120} height={980} loading="eager" fetchPriority="high" />
+                        <img src={asset(streetshowHero)} alt={shotAlt(heroMain)} width={1120} height={980} loading="eager" fetchPriority="high" />
                     </a>
                     {heroSide && (
                         <a href={heroSide.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-side" tabIndex={-1}>
-                            <img src={asset(heroSide.image)} alt="" width={960} height={600} loading="lazy" />
+                            <img src={asset(heroSide.image)} alt={shotAlt(heroSide)} width={960} height={600} loading="lazy" />
                         </a>
                     )}
                 </div>
@@ -151,9 +162,10 @@ function Services() {
 // Zrzut realizacji jako link do strony; dla czytników ekranu wystarcza link w treści karty.
 function ProjectShot({ project }: { project: Project }) {
     const asset = useAsset();
+    const shotAlt = useShotAlt();
     return (
         <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-shot" tabIndex={-1} aria-hidden="true">
-            <img src={asset(project.image)} alt="" loading="lazy" width={960} height={600} />
+            <img src={asset(project.image)} alt={shotAlt(project)} loading="lazy" width={960} height={600} />
         </a>
     );
 }
