@@ -216,13 +216,13 @@ h3 {
 }
 .hero-inner {
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: 1fr 1.2fr;
     gap: 48px;
     align-items: end;
     padding-top: 56px;
 }
 .hero-copy {
-    padding-bottom: 72px;
+    padding: 0 0 72px;
 }
 .hero h1 {
     font: 700 clamp(2.3rem, 5vw, 3.75rem) / 1.04 var(--display);
@@ -271,8 +271,8 @@ h3 {
     padding: 13px 22px;
 }
 .hero-shots {
+    /* wysokość wyznacza duży zrzut, który opiera się o pasek akcentu */
     position: relative;
-    height: 400px;
 }
 .hero-shot {
     position: absolute;
@@ -288,10 +288,10 @@ h3 {
     object-position: top;
 }
 .hero-shot-main {
-    left: 0;
-    bottom: 0;
-    width: 88%;
-    aspect-ratio: 16 / 10;
+    /* pełna szerokość zrzutu, przycięty tylko dół */
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
     border-bottom: 0;
     border-radius: 8px 8px 0 0;
 }
@@ -299,7 +299,7 @@ h3 {
     /* po prawej, przy dolnej krawędzi: nie zasłania logo ani menu Street Show */
     right: 0;
     bottom: 32px;
-    width: 46%;
+    width: 44%;
     aspect-ratio: 16 / 10;
     border-radius: 8px;
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
@@ -849,7 +849,7 @@ h2.section-title {
         gap: 0;
     }
     .hero-copy {
-        padding-bottom: 56px;
+        padding: 0 0 56px;
     }
     .hero-shots {
         /* ten sam zrzut Street Show otwiera Realizacje zaraz pod hero */
