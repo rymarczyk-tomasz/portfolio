@@ -5,6 +5,7 @@ import { ContactForm } from "./components/ContactForm";
 import { GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./components/Icons";
 import { EMAIL, GITHUB, LINKEDIN, NAME, PHONE, PHONE_DISPLAY } from "./config";
 import streetshowHero from "./assets/projects/streetshow-hero.webp";
+import { shotSrcSet } from "./shots";
 
 declare const __BUILD_YEAR__: number;
 
@@ -44,8 +45,11 @@ function Header() {
     return (
         <header className={`header band-dark${scrolled ? " scrolled" : ""}`}>
             <div className="container header-inner">
-                <a href="#top" className="logo" aria-label={NAME}>
-                    <span className="logo-mark">TR</span>
+                {/* nazwa dostępna z treści (bez aria-label, które różniłoby się od widocznego tekstu) */}
+                <a href="#top" className="logo">
+                    <span className="logo-mark" aria-hidden="true">
+                        TR
+                    </span>
                     <span className="logo-name">{NAME}</span>
                 </a>
                 <nav className="nav">
@@ -104,11 +108,29 @@ function Hero() {
                 </div>
                 <div className="hero-shots" aria-hidden="true">
                     <a href={heroMain.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-main" tabIndex={-1}>
-                        <img src={asset(streetshowHero)} alt={shotAlt(heroMain)} width={1120} height={980} loading="eager" fetchPriority="high" />
+                        {/* sizes 1px: poniżej 861px kolaż jest ukryty, więc przeglądarka bierze najmniejszy plik */}
+                        <img
+                            src={asset(streetshowHero)}
+                            srcSet={shotSrcSet("streetshow-hero", streetshowHero, 1120, asset)}
+                            sizes="(max-width: 860px) 1px, (max-width: 1120px) 50vw, 520px"
+                            alt={shotAlt(heroMain)}
+                            width={1120}
+                            height={980}
+                            loading="eager"
+                            fetchPriority="high"
+                        />
                     </a>
                     {heroSide && (
                         <a href={heroSide.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-side" tabIndex={-1}>
-                            <img src={asset(heroSide.image)} alt={shotAlt(heroSide)} width={960} height={600} loading="lazy" />
+                            <img
+                                src={asset(heroSide.image)}
+                                srcSet={shotSrcSet(heroSide.slug, heroSide.image, 960, asset)}
+                                sizes="(max-width: 860px) 1px, 230px"
+                                alt={shotAlt(heroSide)}
+                                width={960}
+                                height={600}
+                                loading="lazy"
+                            />
                         </a>
                     )}
                 </div>
@@ -159,13 +181,28 @@ function Services() {
     );
 }
 
+// Szerokość zrzutu na stronie: wyróżnione realizacje (1.35fr z 1080 px) i karty w siatce (3 kolumny).
+const shotSizes = {
+    featured: "(max-width: 860px) calc(100vw - 32px), 600px",
+    card: "(max-width: 560px) calc(100vw - 32px), (max-width: 1020px) 50vw, 340px",
+};
+
 // Zrzut realizacji jako link do strony; dla czytników ekranu wystarcza link w treści karty.
-function ProjectShot({ project }: { project: Project }) {
+// eager: pierwszy zrzut w Realizacjach to na telefonie największy element ekranu (LCP), bo kolaż w hero jest tam ukryty.
+function ProjectShot({ project, sizes, eager = false }: { project: Project; sizes: string; eager?: boolean }) {
     const asset = useAsset();
     const shotAlt = useShotAlt();
     return (
         <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-shot" tabIndex={-1} aria-hidden="true">
-            <img src={asset(project.image)} alt={shotAlt(project)} loading="lazy" width={960} height={600} />
+            <img
+                src={asset(project.image)}
+                srcSet={shotSrcSet(project.slug, project.image, 960, asset)}
+                sizes={sizes}
+                alt={shotAlt(project)}
+                loading={eager ? "eager" : "lazy"}
+                width={960}
+                height={600}
+            />
         </a>
     );
 }
@@ -182,9 +219,9 @@ function Projects() {
                     <p className="projects-count">{t.projects.count(projects.length)}</p>
                 </div>
                 <div className="featured-list">
-                    {featured.map((p) => (
+                    {featured.map((p, i) => (
                         <article key={p.slug} id={`project-${p.slug}`} className="featured">
-                            <ProjectShot project={p} />
+                            <ProjectShot project={p} sizes={shotSizes.featured} eager={i === 0} />
                             <div className="featured-body">
                                 <p className="project-category">{p.category[lang]}</p>
                                 <h3>{p.name}</h3>
@@ -207,7 +244,7 @@ function Projects() {
                 <div className="projects-grid">
                     {rest.map((p) => (
                         <article key={p.slug} id={`project-${p.slug}`} className="project-card">
-                            <ProjectShot project={p} />
+                            <ProjectShot project={p} sizes={shotSizes.card} />
                             <p className="project-category">{p.category[lang]}</p>
                             <h3>
                                 <a href={p.live} target="_blank" rel="noopener noreferrer">

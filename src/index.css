@@ -898,9 +898,17 @@ h2.section-title {
     .container {
         padding: 0 16px;
     }
-    .logo-name,
     .header-quote {
         display: none;
+    }
+    .logo-name {
+        /* ukryte wizualnie, ale dalej jest nazwą linku dla czytników ekranu */
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
     }
     .contact-form {
         padding: 20px;

@@ -74,8 +74,11 @@ export function ContactForm() {
                 <label htmlFor="message">{t.contact.message}</label>
                 <textarea id="message" name="message" rows={6} required />
             </div>
-            {/* pułapka na boty — ukryte pole */}
-            <input type="checkbox" name="botcheck" className="hp" tabIndex={-1} autoComplete="off" />
+            {/* pułapka na boty — ukryte pole (etykieta tylko dla walidatorów, czytniki ekranu go pomijają) */}
+            <label className="hp" aria-hidden="true">
+                botcheck
+                <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" />
+            </label>
 
             <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
                 {status === "sending" ? t.contact.sending : t.contact.send}
