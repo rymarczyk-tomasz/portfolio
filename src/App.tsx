@@ -4,6 +4,7 @@ import { projects, stack, type Project } from "./data/projects";
 import { ContactForm } from "./components/ContactForm";
 import { GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./components/Icons";
 import { EMAIL, GITHUB, LINKEDIN, NAME, PHONE, PHONE_DISPLAY } from "./config";
+import streetshowHero from "./assets/projects/streetshow-hero.webp";
 
 declare const __BUILD_YEAR__: number;
 
@@ -65,7 +66,7 @@ function Header() {
     );
 }
 
-// Kolaż w hero: duży zrzut Street Show, mały Przytulanek (dane z projects.ts).
+// Kolaż w hero: duży zrzut Street Show (osobny plik 8:7, w Realizacjach zostaje 16:10), mały Przytulanek (dane z projects.ts).
 const heroMain = projects.find((p) => p.slug === "streetshow")!;
 const heroSide = projects.find((p) => p.slug === "przytulanki");
 
@@ -92,7 +93,7 @@ function Hero() {
                 </div>
                 <div className="hero-shots" aria-hidden="true">
                     <a href={heroMain.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-main" tabIndex={-1}>
-                        <img src={asset(heroMain.image)} alt="" width={960} height={600} loading="eager" fetchPriority="high" />
+                        <img src={asset(streetshowHero)} alt="" width={1120} height={980} loading="eager" fetchPriority="high" />
                     </a>
                     {heroSide && (
                         <a href={heroSide.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-side" tabIndex={-1}>
