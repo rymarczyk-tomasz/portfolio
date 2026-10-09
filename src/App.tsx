@@ -84,6 +84,12 @@ function useShotAlt() {
     };
 }
 
+// Poniżej 861px kolaż jest ukryty (display: none), ale przeglądarka i tak pobrałaby zrzuty.
+// Źródło z pustym GIF-em 1×1 sprawia, że na telefonie nie pobiera żadnego pliku.
+function HiddenOnMobile() {
+    return <source media="(max-width: 860px)" srcSet="data:image/gif;base64,R0lGODlhAQABAAAAACw=" />;
+}
+
 function Hero() {
     const { t } = useI18n();
     const asset = useAsset();
@@ -108,29 +114,34 @@ function Hero() {
                 </div>
                 <div className="hero-shots" aria-hidden="true">
                     <a href={heroMain.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-main" tabIndex={-1}>
-                        {/* sizes 1px: poniżej 861px kolaż jest ukryty, więc przeglądarka bierze najmniejszy plik */}
-                        <img
-                            src={asset(streetshowHero)}
-                            srcSet={shotSrcSet("streetshow-hero", streetshowHero, 1120, asset)}
-                            sizes="(max-width: 860px) 1px, (max-width: 1120px) 50vw, 520px"
-                            alt={shotAlt(heroMain)}
-                            width={1120}
-                            height={980}
-                            loading="eager"
-                            fetchPriority="high"
-                        />
+                        <picture>
+                            <HiddenOnMobile />
+                            <img
+                                src={asset(streetshowHero)}
+                                srcSet={shotSrcSet("streetshow-hero", streetshowHero, 1120, asset)}
+                                sizes="(max-width: 1120px) 50vw, 520px"
+                                alt={shotAlt(heroMain)}
+                                width={1120}
+                                height={980}
+                                loading="eager"
+                                fetchPriority="high"
+                            />
+                        </picture>
                     </a>
                     {heroSide && (
                         <a href={heroSide.live} target="_blank" rel="noopener noreferrer" className="hero-shot hero-shot-side" tabIndex={-1}>
-                            <img
-                                src={asset(heroSide.image)}
-                                srcSet={shotSrcSet(heroSide.slug, heroSide.image, 960, asset)}
-                                sizes="(max-width: 860px) 1px, 230px"
-                                alt={shotAlt(heroSide)}
-                                width={960}
-                                height={600}
-                                loading="lazy"
-                            />
+                            <picture>
+                                <HiddenOnMobile />
+                                <img
+                                    src={asset(heroSide.image)}
+                                    srcSet={shotSrcSet(heroSide.slug, heroSide.image, 960, asset)}
+                                    sizes="230px"
+                                    alt={shotAlt(heroSide)}
+                                    width={960}
+                                    height={600}
+                                    loading="lazy"
+                                />
+                            </picture>
                         </a>
                     )}
                 </div>
